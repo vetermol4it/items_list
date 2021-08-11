@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:items_list/domain/models/api_item.dart';
+import 'package:items_list/domain/models/item.dart';
 import 'package:items_list/domain/repository/item_repository.dart';
 
 class ItemGeneratorBloc extends Bloc<ItemGeneratorBlocEvent,ItemGeneratorBlocState> {

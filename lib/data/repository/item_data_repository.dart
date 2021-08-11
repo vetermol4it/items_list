@@ -1,6 +1,6 @@
 import 'package:items_list/data/api/api_util.dart';
 import 'package:items_list/data/mapper/item_mapper.dart';
-import 'package:items_list/domain/models/api_item.dart';
+import 'package:items_list/domain/models/item.dart';
 import 'package:items_list/domain/repository/item_repository.dart';
 
 class ItemDataRepository extends ItemRepository {

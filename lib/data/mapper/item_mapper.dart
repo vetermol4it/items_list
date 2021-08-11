@@ -1,5 +1,5 @@
 import 'package:items_list/data/models/api_item.dart';
-import 'package:items_list/domain/models/api_item.dart';
+import 'package:items_list/domain/models/item.dart';
 
 class ItemMapper{
   static Item fromApi(ApiItem apiModel) {

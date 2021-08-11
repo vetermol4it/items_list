@@ -28,7 +28,7 @@ class ItemGeneratorService {
     final random = Random();
     final itemsCount = 10000 + random.nextInt(90000);
     final items = List.generate(
-        itemsCount,
+        3,
         (index) {
           Map<String, dynamic> item = {
             'id' : lastId + 1,
