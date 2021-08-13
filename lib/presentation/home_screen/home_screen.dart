@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:items_list/domain/bloc/item_generator_bloc.dart';
-import 'package:items_list/domain/models/item.dart';
 
-import 'package:items_list/internal/dependencies/item_ganerator_module.dart';
-import 'package:items_list/presentation/home_screen/widgets/custom_button.dart';
-import 'package:items_list/presentation/home_screen/widgets/item_card.dart';
-import 'package:items_list/presentation/styles/app_icons.dart';
+import 'package:items_list/main.dart';
+
+import 'package:items_list/domain/bloc/item_generator_bloc.dart';
 
 import 'package:items_list/presentation/styles/color_styles.dart';
+import 'package:items_list/presentation/home_screen/widgets/custom_button.dart';
+import 'package:items_list/presentation/home_screen/widgets/item_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,48 +19,61 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  final _bloc = ItemGeneratorModule.itemGeneratorBloc();
+  final _itemGeneratorBloc = getIt<ItemGeneratorBloc>();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: ColorStyles.backgroundColor,
-      child: SafeArea(
-        child: Scaffold(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: ColorStyles.backgroundColor,
+        appBar: AppBar(
           backgroundColor: ColorStyles.backgroundColor,
-          appBar: AppBar(
-            backgroundColor: ColorStyles.backgroundColor,
-            title: Text(
-              'homeScreenTitle'.tr(),
-              style: TextStyle(
-                color: ColorStyles.textColor,
-                fontSize: 20
-              ),
+          title: Text(
+            'homeScreenTitle'.tr(),
+            style: TextStyle(
+              color: ColorStyles.textColor,
+              fontSize: 20,
             ),
-            actions: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
-                child: SizedBox(
-                  child: CustomButton(
-                    icon: Icons.add,
-                    onTap: ()=> _bloc.add(ItemGeneratorBlocAddItemEvent()),
-                  ),
-                ),
-              )
-            ],
           ),
-          body: _getBody(),
+          actions: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 12,
+              ),
+              child: SizedBox(
+                child: CustomButton(
+                  icon: Icons.add,
+                  onTap: ()=> _itemGeneratorBloc.add(ItemGeneratorBlocAddItemEvent()),
+                ),
+              ),
+            )
+          ],
+        ),
+        body: BlocProvider(
+          create: (context)=> _itemGeneratorBloc,
+          child: Body(),
         ),
       ),
     );
   }
+}
 
-  Widget _getBody(){
+class Body extends StatefulWidget {
+  const Body({Key? key}) : super(key: key);
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+
+  final _itemGeneratorBloc = getIt<ItemGeneratorBloc>();
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder(
-      bloc: _bloc,
+      bloc: _itemGeneratorBloc,
       builder: (context, state) {
         if (state is ItemGeneratorBlocReadyState) {
           if (state.items.isEmpty) {
@@ -75,26 +87,18 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             );
           } else {
-            return ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: (state.items.length/2).round(),
-                itemBuilder: (context,index) {
-                  final items = List.from(state.items.reversed);
-                  final leftItem = ItemCard(
-                    item: items[index*2],
-                    onDelete: ()=> _bloc.add(ItemGeneratorBlocDeleteItemEvent(items[index*2].id)),
+            return GridView.builder(
+              physics: BouncingScrollPhysics(),
+              itemCount: state.items.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              itemBuilder: (context, index)=> ItemCard(
+                item: state.items[index],
+                onDelete: (){
+                  _itemGeneratorBloc.add(
+                    ItemGeneratorBlocDeleteItemEvent(state.items[index].id)
                   );
-                  final rightItem = index <= items.length/2 - 1 ? ItemCard(
-                    item: items[index*2 + 1],
-                    onDelete: ()=> _bloc.add(ItemGeneratorBlocDeleteItemEvent(items[index*2+1].id)),
-                  ) : SizedBox(width: MediaQuery.of(context).size.width/2,);
-                  return Row(
-                    children: [
-                      Expanded(child: leftItem),
-                      Expanded(child: rightItem),
-                    ],
-                  );
-                }
+                },
+              ),
             );
           }
         } else {
@@ -104,4 +108,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
 

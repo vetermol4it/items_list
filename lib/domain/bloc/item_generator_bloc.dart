@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:items_list/domain/models/item.dart';
 import 'package:items_list/domain/repository/item_repository.dart';
+import 'package:items_list/domain/models/item.dart';
 
 class ItemGeneratorBloc extends Bloc<ItemGeneratorBlocEvent,ItemGeneratorBlocState> {
   ItemGeneratorBloc(this._repository) : super(ItemGeneratorBlocInitialState()){
@@ -15,13 +15,13 @@ class ItemGeneratorBloc extends Bloc<ItemGeneratorBlocEvent,ItemGeneratorBlocSta
   @override
   Stream<ItemGeneratorBlocState> mapEventToState(ItemGeneratorBlocEvent event) async* {
     if (event is ItemGeneratorBlocInitialEvent){
-      _items = _repository.generateItemsList();
+      _items = List.from(_repository.generateItemsList().reversed);
       yield ItemGeneratorBlocReadyState(_items);
     } else if (event is ItemGeneratorBlocDeleteItemEvent) {
       _items.removeWhere((element) => element.id == event.itemId);
       yield ItemGeneratorBlocReadyState(_items);
     } else if (event is ItemGeneratorBlocAddItemEvent) {
-      _items.add(_repository.generateItem());
+      _items.insert(0, _repository.generateItem());
       yield ItemGeneratorBlocReadyState(_items);
     }
   }

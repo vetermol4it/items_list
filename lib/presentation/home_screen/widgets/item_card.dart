@@ -26,7 +26,7 @@ class ItemCard extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.bottomLeft,
-            child: _getText(),
+            child: CardTitle(title: item.title),
           ),
           Align(
             alignment: Alignment.topRight,
@@ -37,16 +37,27 @@ class ItemCard extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topCenter,
-            child: _getImage(cardHeight - 64),
+            child: CardImage(imageUrl: item.imageUrl),
           )
         ],
       ),
     );
   }
+}
 
-  Widget _getImage(double size){
+class CardImage extends StatelessWidget {
+  final String imageUrl;
+
+  const CardImage({
+    Key? key,
+    required this.imageUrl,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = (MediaQuery.of(context).size.width / 2) - 64;
     return Image.network(
-      item.imageUrl,
+      imageUrl,
       height: size,
       width: size,
       fit: BoxFit.contain,
@@ -63,12 +74,21 @@ class ItemCard extends StatelessWidget {
       },
     );
   }
+}
 
-  Widget _getText(){
+class CardTitle extends StatelessWidget {
+  final String title;
+  const CardTitle({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 8),
       child: Text(
-        item.title,
+        title,
         style: TextStyle(
           fontSize: 14,
           color: ColorStyles.textColor,
@@ -77,3 +97,5 @@ class ItemCard extends StatelessWidget {
     );
   }
 }
+
+
