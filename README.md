@@ -23,4 +23,4 @@
 
 ## Ссылки на скачивание приложения
 
-# [Android](https://drive.google.com/file/d/1-hDldKo9q1zpLca7l-sgZw_wRdIZ-Mzm/view?usp=sharing)
+[Android](https://drive.google.com/file/d/1-hDldKo9q1zpLca7l-sgZw_wRdIZ-Mzm/view?usp=sharing)
