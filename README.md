@@ -1,16 +1,26 @@
-# items_list
+<h1 align="center">Этот репозиторий - пример моего Flutter-кода</h1>
+<h2 align="center">По мере развития навыков периодический обновляется и правится</h2>
 
-A new Flutter project.
+<p align="center">
+  
+<img src="https://img.shields.io/badge/made%20by-vetermol4it-brightgreen">
 
-## Getting Started
+<img src="https://img.shields.io/badge/flutter-2.5.3-blue" >
 
-This project is a starting point for a Flutter application.
+<img src="https://img.shields.io/badge/dart-2.12-blue">
 
-A few resources to get you started if this is your first Flutter project:
+<img src="https://img.shields.io/badge/flutter_bloc-8.0-blue">
+</p>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Описание
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Приложение представляет собой простой список элементов с возможностью удалить элемент или добавить новый.
+
+При проектировании я придерживался принципов Clean Architecture.
+
+Для стэйт-менеджмента используется Bloc, для DI GetIt.
+А так же Easy Localization для локализации и хранения строковых ресурсов.
+
+## Ссылки на скачивание приложения
+
+# [Android](https://drive.google.com/file/d/1-hDldKo9q1zpLca7l-sgZw_wRdIZ-Mzm/view?usp=sharing)
