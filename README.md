@@ -5,11 +5,11 @@
   
 <img src="https://img.shields.io/badge/made%20by-vetermol4it-brightgreen">
 
-<img src="https://img.shields.io/badge/flutter-2.5.3-blue" >
+<img src="https://img.shields.io/badge/flutter-2.10.1-blue" >
 
-<img src="https://img.shields.io/badge/dart-2.12-blue">
+<img src="https://img.shields.io/badge/dart-2.16.0-blue">
 
-<img src="https://img.shields.io/badge/flutter_bloc-8.0-blue">
+<img src="https://img.shields.io/badge/flutter_bloc-8.0.1-blue">
 </p>
 
 ## Описание
@@ -18,8 +18,9 @@
 
 При проектировании я придерживался принципов Clean Architecture.
 
-Для стэйт-менеджмента используется Bloc, для DI GetIt.
-А так же Easy Localization для локализации и хранения строковых ресурсов.
+State managment: BLoC<br/>
+DI: GetIt.<br/>
+Localization: Easy Localization<br/>
 
 ## Ссылки на скачивание приложения
 
