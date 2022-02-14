@@ -24,10 +24,10 @@ void main() async {
   ]).then((_) {
     runApp(
         EasyLocalization(
-          supportedLocales: [Locale('ru'),],
+          supportedLocales: const [Locale('ru'),],
           path: 'assets/strings',
-          fallbackLocale: Locale('ru'),
-          child: Application(),
+          fallbackLocale: const Locale('ru'),
+          child: const Application(),
         )
     );
   });

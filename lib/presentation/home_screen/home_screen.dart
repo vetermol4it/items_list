@@ -30,43 +30,42 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: ColorStyles.backgroundColor,
           title: Text(
             'homeScreenTitle'.tr(),
-            style: TextStyle(
+            style: const TextStyle(
               color: ColorStyles.textColor,
               fontSize: 20,
             ),
           ),
           actions: [
             Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 12,
               ),
-              child: SizedBox(
-                child: CustomButton(
-                  icon: Icons.add,
-                  onTap: ()=> _itemGeneratorBloc.add(ItemGeneratorBlocAddItemEvent()),
+              child: CustomButton(
+                icon: Icons.add,
+                onTap: ()=> _itemGeneratorBloc.add(
+                  ItemGeneratorBlocAddItemEvent(),
                 ),
               ),
             )
           ],
         ),
-        body: BlocProvider(
-          create: (context)=> _itemGeneratorBloc,
-          child: Body(),
-        ),
+        body: const _Body(),
       ),
     );
   }
 }
 
-class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+
+
+class _Body extends StatefulWidget {
+  const _Body({Key? key}) : super(key: key);
 
   @override
   _BodyState createState() => _BodyState();
 }
 
-class _BodyState extends State<Body> {
+class _BodyState extends State<_Body> {
 
   final _itemGeneratorBloc = getIt<ItemGeneratorBloc>();
 
@@ -80,7 +79,7 @@ class _BodyState extends State<Body> {
             return Center(
               child: Text(
                 'emptyListPlaceholder'.tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   color: ColorStyles.textColor,
                 ),
@@ -88,16 +87,13 @@ class _BodyState extends State<Body> {
             );
           } else {
             return GridView.builder(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemCount: state.items.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              itemBuilder: (context, index)=> ItemCard(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
+              itemBuilder: (context, index) => ItemCard(
                 item: state.items[index],
-                onDelete: (){
-                  _itemGeneratorBloc.add(
-                    ItemGeneratorBlocDeleteItemEvent(state.items[index].id)
-                  );
-                },
               ),
             );
           }

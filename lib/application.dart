@@ -5,6 +5,8 @@ import 'package:items_list/presentation/home_screen/home_screen.dart';
 
 class Application extends StatelessWidget {
 
+  const Application({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +17,7 @@ class Application extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Roboto",
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
