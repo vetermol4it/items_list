@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 import 'package:items_list/data/api/api_util.dart';
 import 'package:items_list/data/api/service/item_generator_service.dart';
+import 'package:items_list/domain/repository/item_repository.dart';
 import 'package:items_list/data/repository/item_data_repository.dart';
 import 'package:items_list/domain/bloc/item_generator_bloc.dart';
 import 'package:items_list/application.dart';
@@ -34,7 +35,7 @@ void main() async {
 
 void _registerDependencies(){
   getIt.registerSingleton<ItemGeneratorService>(ItemGeneratorService());
-  getIt.registerSingleton(ApiUtil(getIt<ItemGeneratorService>()));
-  getIt.registerSingleton(ItemDataRepository(getIt<ApiUtil>()));
-  getIt.registerSingleton(ItemGeneratorBloc(getIt<ItemDataRepository>()));
+  getIt.registerSingleton<ApiUtil>(ApiUtil(getIt<ItemGeneratorService>()));
+  getIt.registerSingleton<ItemRepository>(ItemDataRepository(getIt<ApiUtil>()));
+  getIt.registerSingleton(ItemGeneratorBloc(getIt<ItemRepository>()));
 }
