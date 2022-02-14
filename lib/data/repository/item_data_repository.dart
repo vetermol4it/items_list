@@ -19,9 +19,9 @@ class ItemDataRepository extends ItemRepository {
   List<Item> generateItemsList() {
     final apiModelsList = _apiUtil.generateItemsList();
     List<Item> result = [];
-    apiModelsList.forEach((element) {
-      result.add(ItemMapper.fromApi(element));
-    });
+    for (var apiModel in apiModelsList) {
+      result.add(ItemMapper.fromApi(apiModel));
+    }
     return result;
   }
 }

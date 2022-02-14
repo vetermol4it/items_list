@@ -21,22 +21,22 @@ class ItemGeneratorService {
     },
   ];
 
-  int lastId = 0;
+  int _lastId = 0;
 
 
   Map<String, dynamic> generateItemsList() {
     final random = Random();
     final itemsCount = 10000 + random.nextInt(90000);
     final items = List.generate(
-        itemsCount,
-        (index) {
-          Map<String, dynamic> item = {
-            'id' : lastId + 1,
-          };
-          lastId++;
-          item.addAll(_itemsDictionary[random.nextInt(4)]);
-          return item;
-        },
+      itemsCount,
+      (index) {
+        Map<String, dynamic> item = {
+          'id' : _lastId + 1,
+        };
+        _lastId++;
+        item.addAll(_itemsDictionary[random.nextInt(4)]);
+        return item;
+      },
     );
     return {
       'items' : items,
@@ -46,9 +46,9 @@ class ItemGeneratorService {
   Map<String, dynamic> generateItem() {
     final random = Random();
     Map<String, dynamic> item = {
-      'id' : lastId + 1,
+      'id' : _lastId + 1,
     };
-    lastId ++;
+    _lastId ++;
     item.addAll(_itemsDictionary[random.nextInt(4)]);
     return item;
   }

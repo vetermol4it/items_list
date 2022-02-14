@@ -1,7 +1,7 @@
 class ApiItem {
-  static const _id_key = 'id';
-  static const _imageUrl_key = 'imageUrl';
-  static const _title_key = 'title';
+  static const _idKey = 'id';
+  static const _imageUrlKey = 'imageUrl';
+  static const _titleKey = 'title';
 
 
   final int id;
@@ -15,15 +15,15 @@ class ApiItem {
   });
 
   ApiItem.fromMap(Map<String,dynamic> map):
-    this.id = map[_id_key],
-    this.imageUrl = map[_imageUrl_key],
-    this.title = map[_title_key];
+    id = map[_idKey],
+    imageUrl = map[_imageUrlKey],
+    title = map[_titleKey];
 
   Map<String, dynamic> toMap(){
     return {
-      _id_key : this.id,
-      _imageUrl_key : this.imageUrl,
-      _title_key : this.title,
+      _idKey : id,
+      _imageUrlKey : imageUrl,
+      _titleKey : title,
     };
   }
 }
