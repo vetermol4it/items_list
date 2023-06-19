@@ -1,14 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
-
-import 'package:items_list/main.dart';
-
+import 'package:items_list/common/di/init_di.dart';
 import 'package:items_list/domain/bloc/item_generator_bloc.dart';
-
-import 'package:items_list/presentation/styles/color_styles.dart';
 import 'package:items_list/presentation/home_screen/widgets/custom_button.dart';
 import 'package:items_list/presentation/home_screen/widgets/item_card.dart';
+import 'package:items_list/presentation/styles/color_styles.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,7 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   final _itemGeneratorBloc = getIt<ItemGeneratorBloc>();
 
   @override
@@ -43,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: CustomButton(
                 icon: Icons.add,
-                onTap: ()=> _itemGeneratorBloc.add(
+                onTap: () => _itemGeneratorBloc.add(
                   ItemGeneratorBlocAddItemEvent(),
                 ),
               ),
@@ -56,8 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-
-
 class _Body extends StatefulWidget {
   const _Body({Key? key}) : super(key: key);
 
@@ -66,7 +60,6 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
-
   final _itemGeneratorBloc = getIt<ItemGeneratorBloc>();
 
   @override
@@ -104,5 +97,3 @@ class _BodyState extends State<_Body> {
     );
   }
 }
-
-

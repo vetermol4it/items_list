@@ -1,6 +1,8 @@
+import 'package:injectable/injectable.dart';
 import 'package:items_list/data/api/service/item_generator_service.dart';
 import 'package:items_list/data/models/api_item.dart';
 
+@lazySingleton
 class ApiUtil {
   static const _itemsKey = 'items';
 

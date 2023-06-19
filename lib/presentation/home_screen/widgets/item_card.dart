@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:items_list/main.dart';
+import 'package:items_list/common/di/init_di.dart';
 import 'package:items_list/domain/bloc/item_generator_bloc.dart';
 import 'package:items_list/domain/models/item.dart';
 import 'package:items_list/presentation/home_screen/widgets/custom_button.dart';
@@ -20,7 +19,6 @@ class ItemCard extends StatefulWidget {
 }
 
 class _ItemCardState extends State<ItemCard> {
-
   final _itemGeneratorBloc = getIt<ItemGeneratorBloc>();
 
   @override
@@ -40,10 +38,8 @@ class _ItemCardState extends State<ItemCard> {
             alignment: Alignment.topRight,
             child: CustomButton(
               icon: AppIcons.trash,
-              onTap: (){
-                _itemGeneratorBloc.add(
-                    ItemGeneratorBlocDeleteItemEvent(widget.item.id)
-                );
+              onTap: () {
+                _itemGeneratorBloc.add(ItemGeneratorBlocDeleteItemEvent(widget.item.id));
               },
             ),
           ),
@@ -68,9 +64,7 @@ class _CardImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 25
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 25),
       child: Image.network(
         imageUrl,
         fit: BoxFit.contain,
@@ -111,5 +105,3 @@ class _CardTitle extends StatelessWidget {
     );
   }
 }
-
-
