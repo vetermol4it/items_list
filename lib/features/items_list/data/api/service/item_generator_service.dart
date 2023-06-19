@@ -1,10 +1,14 @@
 import 'dart:math';
 
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 @lazySingleton
 class ItemGeneratorService {
-  static const _itemsDictionary = [
+  final _uuid = const Uuid();
+  final _random = Random();
+
+  final _itemsDictionary = [
     {
       'imageUrl': 'https://pizzafiero.ru/wp-content/uploads/2015/02/05-k.png',
       'title': 'Coca-Cola',
@@ -23,34 +27,19 @@ class ItemGeneratorService {
     },
   ];
 
-  int _lastId = 0;
-
-  Map<String, dynamic> generateItemsList() {
-    final random = Random();
-    final itemsCount = 10000 + random.nextInt(90000);
+  List<Map<String, dynamic>> generateItemsList() {
+    final itemsCount = 10000 + _random.nextInt(90000);
     final items = List.generate(
       itemsCount,
-      (index) {
-        Map<String, dynamic> item = {
-          'id': _lastId + 1,
-        };
-        _lastId++;
-        item.addAll(_itemsDictionary[random.nextInt(4)]);
-        return item;
-      },
+      (_) => generateItem(),
     );
-    return {
-      'items': items,
-    };
+    return items;
   }
 
   Map<String, dynamic> generateItem() {
-    final random = Random();
-    Map<String, dynamic> item = {
-      'id': _lastId + 1,
-    };
-    _lastId++;
-    item.addAll(_itemsDictionary[random.nextInt(4)]);
-    return item;
+    final newItem = _itemsDictionary[_random.nextInt(4)];
+    newItem.addAll({'id': _uuid.v4()});
+
+    return newItem;
   }
 }

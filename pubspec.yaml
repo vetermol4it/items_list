@@ -18,6 +18,7 @@ dependencies:
   easy_localization: ^3.0.0
   get_it: ^7.2.0
   injectable: ^2.1.2
+  uuid: ^3.0.6
 
 dev_dependencies:
   flutter_test:

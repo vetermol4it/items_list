@@ -1,4 +1,5 @@
 {
   "homeScreenTitle" : "Меню",
-  "emptyListPlaceholder" : "Пусто"
+  "emptyListPlaceholder" : "Пусто",
+  "addItemButton" : "Добавить элемент"
 }

@@ -10,12 +10,11 @@ class ItemsListRepository implements IItemsListRepository {
   ItemsListRepository(this._apiUtil);
 
   @override
-  Item getItem() {
-    return _apiUtil.getItem();
-  }
+  List<Item> getItems() => _apiUtil.getItems();
 
   @override
-  List<Item> getItemsList() {
-    return _apiUtil.getItemsList();
-  }
+  List<Item> addItem() => _apiUtil.addItem();
+
+  @override
+  List<Item> deleteItem(String itemId) => _apiUtil.deleteItem(itemId);
 }

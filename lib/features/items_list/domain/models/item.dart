@@ -3,7 +3,7 @@ class Item {
   static const _imageUrlKey = 'imageUrl';
   static const _titleKey = 'title';
 
-  final int id;
+  final String id;
   final String imageUrl;
   final String title;
 

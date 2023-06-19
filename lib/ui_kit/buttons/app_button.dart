@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:items_list/ui_kit/styles/color_styles.dart';
 
 class AppButton extends StatelessWidget {
-  final IconData icon;
+  final String title;
   final VoidCallback onTap;
 
   const AppButton({
     super.key,
-    required this.icon,
+    required this.title,
     required this.onTap,
   });
 
@@ -16,13 +16,20 @@ class AppButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 32,
-        height: 32,
-        color: ColorStyles.buttonColor,
-        child: Icon(
-          icon,
-          color: ColorStyles.textColor,
-          size: 20,
+        height: 50,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: ColorStyles.buttonColor,
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              color: ColorStyles.textColor,
+              fontSize: 20,
+            ),
+          ),
         ),
       ),
     );

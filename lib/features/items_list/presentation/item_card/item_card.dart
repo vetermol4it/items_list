@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:items_list/features/items_list/domain/models/item.dart';
 import 'package:items_list/features/items_list/presentation/item_card/item_card_image.dart';
 import 'package:items_list/features/items_list/presentation/item_card/item_card_title.dart';
-import 'package:items_list/ui_kit/buttons/app_button.dart';
+import 'package:items_list/ui_kit/buttons/app_icon_button.dart';
 import 'package:items_list/ui_kit/styles/app_icons.dart';
 import 'package:items_list/ui_kit/styles/color_styles.dart';
 
 class ItemCard extends StatelessWidget {
   final Item item;
-  final Function(int) onItemDeleteButtonTap;
+  final Function(String) onItemDeleteButtonTap;
 
   const ItemCard({
     super.key,
@@ -31,9 +31,9 @@ class ItemCard extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topRight,
-            child: AppButton(
+            child: AppIconButton(
               icon: AppIcons.trash,
-              onTap: onItemDeleteButtonTap(item.id),
+              onTap: () => onItemDeleteButtonTap(item.id),
             ),
           ),
           Align(
