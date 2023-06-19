@@ -10,12 +10,12 @@ class ItemDataRepository implements ItemRepository {
   ItemDataRepository(this._apiUtil);
 
   @override
-  Item generateItem() {
-    return _apiUtil.generateItem();
+  Item getItem() {
+    return _apiUtil.getItem();
   }
 
   @override
-  List<Item> generateItemsList() {
-    return _apiUtil.generateItemsList();
+  List<Item> getItemsList() {
+    return _apiUtil.getItemsList();
   }
 }

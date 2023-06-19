@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:items_list/common/di/init_di.dart';
-import 'package:items_list/domain/bloc/item_generator_bloc.dart';
+import 'package:items_list/domain/bloc/items_list_bloc.dart';
 import 'package:items_list/domain/models/item.dart';
 import 'package:items_list/presentation/home_screen/widgets/custom_button.dart';
 import 'package:items_list/presentation/styles/app_icons.dart';
@@ -19,7 +19,7 @@ class ItemCard extends StatefulWidget {
 }
 
 class _ItemCardState extends State<ItemCard> {
-  final _itemGeneratorBloc = getIt<ItemGeneratorBloc>();
+  final _itemGeneratorBloc = getIt<ItemsListBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _ItemCardState extends State<ItemCard> {
             child: CustomButton(
               icon: AppIcons.trash,
               onTap: () {
-                _itemGeneratorBloc.add(ItemGeneratorBlocDeleteItemEvent(widget.item.id));
+                _itemGeneratorBloc.add(ItemsListDeleteItemEvent(widget.item.id));
               },
             ),
           ),

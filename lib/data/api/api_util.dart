@@ -10,7 +10,7 @@ class ApiUtil {
 
   ApiUtil(this._itemGeneratorService);
 
-  List<Item> generateItemsList() {
+  List<Item> getItemsList() {
     final map = _itemGeneratorService.generateItemsList();
     final List itemsMaps = map[_itemsKey];
     List<Item> result = [];
@@ -20,7 +20,7 @@ class ApiUtil {
     return result;
   }
 
-  Item generateItem() {
+  Item getItem() {
     final map = _itemGeneratorService.generateItem();
     return Item.fromMap(map);
   }

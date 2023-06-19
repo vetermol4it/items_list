@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:items_list/common/di/init_di.dart';
-import 'package:items_list/domain/bloc/item_generator_bloc.dart';
+import 'package:items_list/domain/bloc/items_list_bloc.dart';
 import 'package:items_list/presentation/home_screen/widgets/custom_button.dart';
 import 'package:items_list/presentation/home_screen/widgets/item_card.dart';
 import 'package:items_list/presentation/styles/color_styles.dart';
@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _itemGeneratorBloc = getIt<ItemGeneratorBloc>();
+  final _itemGeneratorBloc = getIt<ItemsListBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CustomButton(
                 icon: Icons.add,
                 onTap: () => _itemGeneratorBloc.add(
-                  ItemGeneratorBlocAddItemEvent(),
+                  ItemsListAddItemEvent(),
                 ),
               ),
             )
@@ -60,14 +60,14 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
-  final _itemGeneratorBloc = getIt<ItemGeneratorBloc>();
+  final _itemGeneratorBloc = getIt<ItemsListBloc>();
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
       bloc: _itemGeneratorBloc,
       builder: (context, state) {
-        if (state is ItemGeneratorBlocReadyState) {
+        if (state is ItemsListReadyState) {
           if (state.items.isEmpty) {
             return Center(
               child: Text(
