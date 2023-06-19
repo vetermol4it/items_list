@@ -1,6 +1,5 @@
 import 'package:injectable/injectable.dart';
 import 'package:items_list/data/api/api_util.dart';
-import 'package:items_list/data/mapper/item_mapper.dart';
 import 'package:items_list/domain/models/item.dart';
 import 'package:items_list/domain/repository/item_repository.dart';
 
@@ -12,17 +11,11 @@ class ItemDataRepository implements ItemRepository {
 
   @override
   Item generateItem() {
-    final apiModel = _apiUtil.generateItem();
-    return ItemMapper.fromApi(apiModel);
+    return _apiUtil.generateItem();
   }
 
   @override
   List<Item> generateItemsList() {
-    final apiModelsList = _apiUtil.generateItemsList();
-    List<Item> result = [];
-    for (var apiModel in apiModelsList) {
-      result.add(ItemMapper.fromApi(apiModel));
-    }
-    return result;
+    return _apiUtil.generateItemsList();
   }
 }
