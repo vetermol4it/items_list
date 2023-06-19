@@ -12,9 +12,6 @@ class Application extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      theme: ThemeData(
-        fontFamily: "Roboto",
-      ),
       home: const HomeScreen(),
     );
   }

@@ -3,7 +3,6 @@ import 'package:items_list/features/items_list/domain/models/item.dart';
 import 'package:items_list/features/items_list/presentation/item_card/item_card_image.dart';
 import 'package:items_list/features/items_list/presentation/item_card/item_card_title.dart';
 import 'package:items_list/ui_kit/buttons/app_icon_button.dart';
-import 'package:items_list/ui_kit/styles/app_icons.dart';
 import 'package:items_list/ui_kit/styles/color_styles.dart';
 
 class ItemCard extends StatelessWidget {
@@ -32,7 +31,7 @@ class ItemCard extends StatelessWidget {
           Align(
             alignment: Alignment.topRight,
             child: AppIconButton(
-              icon: AppIcons.trash,
+              icon: Icons.delete_outline,
               onTap: () => onItemDeleteButtonTap(item.id),
             ),
           ),

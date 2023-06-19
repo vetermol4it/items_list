@@ -32,11 +32,3 @@ flutter:
   uses-material-design: true
   assets:
     - assets/strings/
-  fonts:
-    - family: AppIcons
-      fonts:
-        - asset: assets/fonts/AppIcons.ttf
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto-Bold.ttf
-          weight: 700
