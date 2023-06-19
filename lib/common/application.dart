@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:items_list/presentation/home_screen/home_screen.dart';
-
+import 'package:flutter/material.dart';
+import 'package:items_list/features/home/presentation/home_screen.dart';
 
 class Application extends StatelessWidget {
-
-  const Application({Key? key}) : super(key: key);
+  const Application({super.key});
 
   @override
   Widget build(BuildContext context) {

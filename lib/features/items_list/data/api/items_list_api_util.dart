@@ -1,14 +1,14 @@
 import 'package:injectable/injectable.dart';
-import 'package:items_list/data/api/service/item_generator_service.dart';
-import 'package:items_list/domain/models/item.dart';
+import 'package:items_list/features/items_list/data/api/service/item_generator_service.dart';
+import 'package:items_list/features/items_list/domain/models/item.dart';
 
 @lazySingleton
-class ApiUtil {
+class ItemsListApiUtil {
   static const _itemsKey = 'items';
 
   final ItemGeneratorService _itemGeneratorService;
 
-  ApiUtil(this._itemGeneratorService);
+  ItemsListApiUtil(this._itemGeneratorService);
 
   List<Item> getItemsList() {
     final map = _itemGeneratorService.generateItemsList();

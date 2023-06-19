@@ -1,4 +1,4 @@
-import 'package:items_list/domain/models/item.dart';
+import 'package:items_list/features/items_list/domain/models/item.dart';
 
 abstract class ItemsListState {}
 
