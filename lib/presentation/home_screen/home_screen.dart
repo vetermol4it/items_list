@@ -2,7 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:items_list/common/di/init_di.dart';
-import 'package:items_list/domain/bloc/items_list_bloc.dart';
+import 'package:items_list/domain/bloc/items_list_cubit.dart';
+import 'package:items_list/domain/bloc/items_list_state.dart';
 import 'package:items_list/presentation/home_screen/widgets/custom_button.dart';
 import 'package:items_list/presentation/home_screen/widgets/item_card.dart';
 import 'package:items_list/presentation/styles/color_styles.dart';
@@ -15,7 +16,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _itemGeneratorBloc = getIt<ItemsListBloc>();
+  final _itemsListCubit = getIt<ItemsListCubit>();
+
+  @override
+  void initState() {
+    _itemsListCubit.fetchItems();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _itemsListCubit.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +52,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: CustomButton(
                 icon: Icons.add,
-                onTap: () => _itemGeneratorBloc.add(
-                  ItemsListAddItemEvent(),
-                ),
+                onTap: () => _itemsListCubit.addItem(),
               ),
             )
           ],
         ),
-        body: const _Body(),
+        body: BlocProvider.value(
+          value: _itemsListCubit,
+          child: const _Body(),
+        ),
       ),
     );
   }
@@ -60,12 +74,9 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
-  final _itemGeneratorBloc = getIt<ItemsListBloc>();
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: _itemGeneratorBloc,
+    return BlocBuilder<ItemsListCubit, ItemsListState>(
       builder: (context, state) {
         if (state is ItemsListReadyState) {
           if (state.items.isEmpty) {

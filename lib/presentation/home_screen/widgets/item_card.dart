@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:items_list/common/di/init_di.dart';
-import 'package:items_list/domain/bloc/items_list_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:items_list/domain/bloc/items_list_cubit.dart';
 import 'package:items_list/domain/models/item.dart';
 import 'package:items_list/presentation/home_screen/widgets/custom_button.dart';
 import 'package:items_list/presentation/styles/app_icons.dart';
@@ -19,8 +19,6 @@ class ItemCard extends StatefulWidget {
 }
 
 class _ItemCardState extends State<ItemCard> {
-  final _itemGeneratorBloc = getIt<ItemsListBloc>();
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,7 +37,7 @@ class _ItemCardState extends State<ItemCard> {
             child: CustomButton(
               icon: AppIcons.trash,
               onTap: () {
-                _itemGeneratorBloc.add(ItemsListDeleteItemEvent(widget.item.id));
+                context.read<ItemsListCubit>().deleteItem(widget.item.id);
               },
             ),
           ),
