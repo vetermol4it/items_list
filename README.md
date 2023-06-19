@@ -19,7 +19,7 @@
 При проектировании я придерживался принципов Clean Architecture.
 
 State managment: BLoC<br/>
-DI: GetIt.<br/>
+DI: GetIt/Injectable<br/>
 Localization: Easy Localization<br/>
 
 ## Ссылки на скачивание приложения
