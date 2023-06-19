@@ -22,12 +22,6 @@ class _ItemsListState extends State<ItemsList> {
   final _cubit = getIt<ItemsListCubit>();
 
   @override
-  void initState() {
-    _cubit.fetchItems();
-    super.initState();
-  }
-
-  @override
   void dispose() {
     _cubit.close();
     super.dispose();
@@ -41,25 +35,21 @@ class _ItemsListState extends State<ItemsList> {
           child: BlocBuilder<ItemsListCubit, ItemsListState>(
             bloc: _cubit,
             builder: (context, state) {
-              if (state is ItemsListReadyState) {
-                if (state.items.isEmpty) {
-                  return const EmptyItemsPlaceholder();
-                } else {
-                  return GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: state.items.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
-                    itemBuilder: (context, index) => ItemCard(
-                      item: state.items[index],
-                      onItemDeleteButtonTap: (itemId) => _cubit.deleteItem(itemId),
-                    ),
-                  );
-                }
+              if (state.items.isEmpty) {
+                return const EmptyItemsPlaceholder();
+              } else {
+                return GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: state.items.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
+                  itemBuilder: (context, index) => ItemCard(
+                    item: state.items[index],
+                    onItemDeleteButtonTap: (itemId) => _cubit.deleteItem(itemId),
+                  ),
+                );
               }
-
-              return const SizedBox.expand();
             },
           ),
         ),

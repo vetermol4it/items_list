@@ -5,22 +5,17 @@ import 'package:items_list/features/items_list/domain/repository/I_items_list_re
 
 @injectable
 class ItemsListCubit extends Cubit<ItemsListState> {
-  ItemsListCubit(this._repository) : super(ItemsListInitialState());
+  ItemsListCubit(this._repository) : super(ItemsListState());
 
   final IItemsListRepository _repository;
 
-  void fetchItems() {
-    final items = _repository.getItems();
-    emit(ItemsListReadyState(items));
-  }
-
   void deleteItem(String itemId) async {
     final items = _repository.deleteItem(itemId);
-    emit(ItemsListReadyState(items));
+    emit(ItemsListState(items: items));
   }
 
   void addItem() async {
     final items = _repository.addItem();
-    emit(ItemsListReadyState(items));
+    emit(ItemsListState(items: items));
   }
 }

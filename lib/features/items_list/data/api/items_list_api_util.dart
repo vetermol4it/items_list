@@ -11,17 +11,6 @@ class ItemsListApiUtil {
 
   final List<Item> _items = [];
 
-  List<Item> getItems() {
-    if (_items.isNotEmpty) return _items;
-
-    final generatedItems = _itemGeneratorService.generateItemsList();
-    for (var map in generatedItems) {
-      _items.add(Item.fromMap(map));
-    }
-
-    return _items;
-  }
-
   List<Item> addItem() {
     final map = _itemGeneratorService.generateItem();
     _items.insert(0, Item.fromMap(map));

@@ -1,11 +1,7 @@
 import 'package:items_list/features/items_list/domain/models/item.dart';
 
-abstract class ItemsListState {}
-
-class ItemsListInitialState extends ItemsListState {}
-
-class ItemsListReadyState extends ItemsListState {
+class ItemsListState {
   final List<Item> items;
 
-  ItemsListReadyState(this.items);
+  ItemsListState({this.items = const []});
 }

@@ -27,15 +27,6 @@ class ItemGeneratorService {
     },
   ];
 
-  List<Map<String, dynamic>> generateItemsList() {
-    final itemsCount = 10000 + _random.nextInt(90000);
-    final items = List.generate(
-      itemsCount,
-      (_) => generateItem(),
-    );
-    return items;
-  }
-
   Map<String, dynamic> generateItem() {
     final newItem = _itemsDictionary[_random.nextInt(4)];
     newItem.addAll({'id': _uuid.v4()});
